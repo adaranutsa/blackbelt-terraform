@@ -1,0 +1,44 @@
+{
+    "executionRoleArn": "${executionRoleArn}",
+    "containerDefinitions": [
+        {
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/${containerName}",
+                    "awslogs-region": "${region}",
+                    "awslogs-create-group": "true",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "secrets": [
+                {
+                    "name": "BB_API_PORT",
+                    "valueFrom": "${portSecret}"
+                }
+            ],
+            "portMappings": [
+                {
+                    "hostPort": ${servicePort},
+                    "protocol": "tcp",
+                    "containerPort": ${servicePort}
+                }
+            ],
+            "image": "<IMAGE1_NAME>",
+            "essential": true,
+            "name": "${containerName}"
+        }
+    ],
+    "cpu": "${cpu}",
+    "memory": "${memory}",
+    "taskRoleArn": "${taskRoleArn}",
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "family": "${family}",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc"
+}

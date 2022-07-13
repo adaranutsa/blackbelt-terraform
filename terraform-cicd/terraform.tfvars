@@ -1,0 +1,5 @@
+namespace          = "bbcicd"
+region             = "us-east-1"
+environment        = "production"
+github_repo_web_id = "adaranutsa/blackbelt-web"
+github_repo_api_id = "adaranutsa/blackbelt-api"
